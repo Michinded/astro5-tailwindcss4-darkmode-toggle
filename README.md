@@ -71,7 +71,7 @@ themeToggle.addEventListener("click", () => {
 
 1. Clone this repository
    ```bash
-   git clone https://github.com/yourusername/tailwindcss4-darkmode-toggle.git
+   git clone https://github.com/Michinded/astro5-tailwindcss4-darkmode-toggle
    cd tailwindcss4-darkmode-toggle
    ```
 
