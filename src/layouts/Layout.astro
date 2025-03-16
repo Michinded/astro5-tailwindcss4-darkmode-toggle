@@ -1,0 +1,33 @@
+---
+import "../styles/global.css";
+import ThemeToggle from "../components/ThemeToggle.astro";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Dakr-Ligth Site</title>
+		<script is:inline>
+			// Apply theme immediately to prevent flashing
+			document.documentElement.classList.toggle(
+				"dark",
+				localStorage.theme === "dark" ||
+					(!("theme" in localStorage) &&
+						window.matchMedia("(prefers-color-scheme: dark)")
+							.matches),
+			);
+		</script>
+	</head>
+	<body class="bg-white dark:bg-gray-900 transition-colors duration-300">
+		<header class="p-4 flex justify-between items-center">
+			<h1 class="text-xl font-bold text-gray-800 dark:text-white">
+				Dark-Light ThemeToggle Example
+			</h1>
+			<ThemeToggle />
+		</header>
+		<main>
+			<slot />
+		</main>
+	</body>
+</html>

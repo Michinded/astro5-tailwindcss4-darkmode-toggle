@@ -1,0 +1,38 @@
+---
+// src/components/ThemeToggle.astro
+
+// This component allows users to toggle between light and dark themes.
+// It uses localStorage to save the user's preference.
+// This is a simple example, and you can customize it to fit your needs.
+---
+
+<button id="theme-toggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">
+    <span class="dark:hidden">🌙</span>
+    <span class="hidden dark:block">☀️</span>
+</button>
+
+<script>
+    // Verify saved preference or use system preference
+    document.addEventListener("DOMContentLoaded", () => {
+        const themeToggle = document.getElementById("theme-toggle");
+
+        // Apply saved theme
+        document.documentElement.classList.toggle(
+            "dark",
+            localStorage.theme === "dark" ||
+                (!("theme" in localStorage) &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches),
+        );
+
+        // Alter theme on click
+        themeToggle?.addEventListener("click", () => {
+            if (document.documentElement.classList.contains("dark")) {
+                document.documentElement.classList.remove("dark");
+                localStorage.theme = "light";
+            } else {
+                document.documentElement.classList.add("dark");
+                localStorage.theme = "dark";
+            }
+        });
+    });
+</script>
